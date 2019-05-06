@@ -13,7 +13,13 @@ class SuggestionList extends Component {
     keyExtractor = item => item.id.toString();
     renderEmpty = () => <Empty text="No hay sugerencias"/>;
     itemSeparator = () => <Separator />;
-    renderItem = ({item}) => <Suggestion {...item}/>;
+    renderItem = ({item}) => {
+        console.log("SUGGESTIONS: " + {...item});
+        console.log("TITLE_SUGGESTION: " + item.title);
+        return(
+            <Suggestion {...item}/>
+        )
+    };
 
     render(){
         return (

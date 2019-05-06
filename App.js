@@ -4,6 +4,7 @@ import {Text, View, ActivityIndicator} from 'react-native';
 import Home from './src/screens/containers/Home';
 import Header from './src/sections/components/Header';
 import SuggestionList from './src/videos/containers/SuggestionList'
+import CategoryList from './src/videos/containers/CategoryList';
 import API from './utils/api';
 
 type Props = {};
@@ -11,16 +12,20 @@ export default class App extends Component<Props> {
 
     state = {
         suggestionList: [],
-        loading: true,
-    };
+        categoryList: [],
+    }
 
-    async componentDidMount(): void {
+    async componentDidMount() {
         const movies = await API.getSuggestion(10);
+        const categories = await API.getMovies();
         console.log(movies);
+        console.log(categories);
         this.setState({
             suggestionList: movies,
-            loading: false,
+            categoryList: categories,
         })
+        console.log("pruebaSuggestion2: "+this.state.suggestionList);
+        console.log("prueba2: "+this.state.categoryList);
     }
 
     render() {
@@ -30,14 +35,14 @@ export default class App extends Component<Props> {
                 <Header />
                 <Text>buscador</Text>
                 <Text>categorias</Text>
-                {loading ?
-                <View>
-                    <ActivityIndicator size="large" color = "#ff050"/>
-                </View>
-                :
+                {console.log("prueba: "+this.state.categoryList)}
+                {console.log("pruebaSuggestion: "+this.state.categoryList)}
+                <CategoryList
+                    list = {this.state.categoryList}
+                />
                 <SuggestionList
-                    list = {suggestionList}
-                />}
+                    list = {this.state.suggestionList}
+                />
             </Home>
         );
     }
