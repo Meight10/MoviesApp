@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Empty from "../components/Empty";
-import Separator from "../components/VerticalSeparator";
-import Suggestion from "../components/Suggestion";
-import Layout from "../components/SuggestionListLayout";
+import Separator from "../../sections/components/HorizontalSeparator";
+import Category from "../components/Category";
+import Layout from "../components/CategoryListLayout";
 import {FlatList} from "react-native";
 
 
@@ -16,9 +16,9 @@ class CategoryList extends Component {
 
         console.log("CATEGORIES: " + {...item});
 
-        /*return(
-            <Suggestion {...item}/>
-        )*/
+        return(
+            <Category {...item}/>
+        )
     };
 
 
@@ -30,6 +30,7 @@ class CategoryList extends Component {
                 title="Categorias"
             >
                 <FlatList
+                    horizontal
                     keyExtractor={this.keyExtractor}
                     data = {
                         this.props.list
