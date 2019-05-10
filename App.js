@@ -6,6 +6,8 @@ import Header from './src/sections/components/Header';
 import SuggestionList from './src/videos/containers/SuggestionList'
 import CategoryList from './src/videos/containers/CategoryList';
 import API from './utils/api';
+import Player from './src/player/containers/Player'
+import { Provider } from 'react-redux';
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -31,19 +33,27 @@ export default class App extends Component<Props> {
     render() {
         const {suggestionList, loading} = this.state;
         return (
-            <Home>
-                <Header />
-                <Text>buscador</Text>
-                <Text>categorias</Text>
-                {console.log("prueba: "+this.state.categoryList)}
-                {console.log("pruebaSuggestion: "+this.state.categoryList)}
-                <CategoryList
-                    list = {this.state.categoryList}
-                />
-                <SuggestionList
-                    list = {this.state.suggestionList}
-                />
-            </Home>
+            <Provider
+                store = {store}
+            >
+                {
+                    //Provider es un componente que nos srive para proveer a la app de nuestros datos, por eso envolvemos todo con provider
+                }
+                <Home>
+                    <Header />
+                    <Player/>
+                    <Text>buscador</Text>
+                    <Text>categorias</Text>
+                    {console.log("prueba: "+this.state.categoryList)}
+                    {console.log("pruebaSuggestion: "+this.state.categoryList)}
+                    <CategoryList
+                        list = {this.state.categoryList}
+                    />
+                    <SuggestionList
+                        list = {this.state.suggestionList}
+                    />
+                </Home>
+            </Provider>
         );
     }
 
