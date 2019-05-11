@@ -7,6 +7,7 @@ import Layout from '../components/SuggestionListLayout';
 import Empty from '../components/Empty';
 import Separator from '../components/VerticalSeparator';
 import Suggestion from '../components/Suggestion';
+import { connect } from 'react-redux';
 
 class SuggestionList extends Component {
 
@@ -39,4 +40,10 @@ class SuggestionList extends Component {
     }
 }
 
-export default SuggestionList;
+function mapStateToProps(state) {
+    return{
+        list: state.movieList
+    }
+}
+
+export default connect(mapStateToProps) (SuggestionList);

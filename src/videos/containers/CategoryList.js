@@ -4,7 +4,7 @@ import Separator from "../../sections/components/HorizontalSeparator";
 import Category from "../components/Category";
 import Layout from "../components/CategoryListLayout";
 import {FlatList} from "react-native";
-
+import { connect } from 'react-redux';
 
 class CategoryList extends Component {
 
@@ -20,8 +20,6 @@ class CategoryList extends Component {
             <Category {...item}/>
         )
     };
-
-
 
     render(){
         return (
@@ -46,4 +44,10 @@ class CategoryList extends Component {
     }
 }
 
-export default CategoryList;
+function mapStateToProps(state) {
+    return{
+        list: state.categoryList
+    }
+}
+
+export default connect(mapStateToProps) (CategoryList); //a connect se le pasan dos cosas: el componente que se va a conectar y una funcion para extraer datos desde nuestro estado
